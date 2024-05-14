@@ -244,11 +244,12 @@ class Score:
 
 class Gravity(pg.sprite.Sprite):
     """
-    
+    重力に関するクラス
     """
     def __init__(self, life: int):
         """
-        
+        重力Surfaceを作成する
+        引数 life：重力場の発動時間
         """
         super().__init__()
         self.image = pg.Surface((WIDTH, HEIGHT), pg.SRCALPHA)
@@ -258,6 +259,11 @@ class Gravity(pg.sprite.Sprite):
 
     def update(self, bombs, emys, exps, score):
         """
+        重力場の発動時間を減少させ、重力場内の爆弾と敵機を処理する
+        引数1 bombs：爆弾グループ
+        引数2 emys：敵機グループ
+        引数3 exps：爆発エフェクトグループ
+        引数4 score：スコア
         """
         self.life -= 1
         if self.life < 0:
