@@ -46,6 +46,12 @@ class Bird(pg.sprite.Sprite):
         pg.K_LEFT: (-1, 0),
         pg.K_RIGHT: (+1, 0),
     }
+    alfa = {
+        pg.K_UP: (0, -2),
+        pg.K_DOWN: (0, +2),
+        pg.K_LEFT: (-2, 0),
+        pg.K_RIGHT: (+2, 0),
+    }
 
     def __init__(self, num: int, xy: tuple[int, int]):
         """
@@ -88,6 +94,10 @@ class Bird(pg.sprite.Sprite):
         引数2 screen：画面Surface
         """
         sum_mv = [0, 0]
+        if key_lst[pg.K_LSHIFT]:
+            bairitu = 2
+        else:
+            bairitu = 1
         for k, mv in __class__.delta.items():
             if key_lst[k]:
                 sum_mv[0] += mv[0]
@@ -95,6 +105,9 @@ class Bird(pg.sprite.Sprite):
         self.rect.move_ip(self.speed*sum_mv[0], self.speed*sum_mv[1])
         if check_bound(self.rect) != (True, True):
             self.rect.move_ip(-self.speed*sum_mv[0], -self.speed*sum_mv[1])
+        self.rect.move_ip(self.speed*sum_mv[0] * bairitu, self.speed*sum_mv[1] * bairitu)
+        if check_bound(self.rect) != (True, True):
+            self.rect.move_ip(-self.speed*sum_mv[0] * bairitu, -self.speed*sum_mv[1] * bairitu)
         if not (sum_mv[0] == 0 and sum_mv[1] == 0):
             self.dire = tuple(sum_mv)
             self.image = self.imgs[self.dire]
