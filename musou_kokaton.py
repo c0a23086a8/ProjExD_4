@@ -103,6 +103,7 @@ class Bird(pg.sprite.Sprite):
             self.dire = tuple(sum_mv)
             self.image = self.imgs[self.dire]
 
+        #追加機能４
         if self.state == "hyper":
             self.image = pg.transform.laplacian(self.image)
             if self.hyper_life < 0:
@@ -274,7 +275,7 @@ def main():
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 beams.add(Beam(bird))
             if event.type == pg.KEYDOWN:
-                if event.key == pg.K_LSHIFT and score.value >=100:
+                if event.key == pg.K_RSHIFT and score.value >=100:
                     #ハイパー化しスコア-100
                     bird.state = "hyper"
                     score.value -= 100
