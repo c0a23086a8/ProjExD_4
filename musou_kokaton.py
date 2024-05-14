@@ -46,12 +46,14 @@ class Bird(pg.sprite.Sprite):
         pg.K_LEFT: (-1, 0),
         pg.K_RIGHT: (+1, 0),
     }
+
     alfa = {
         pg.K_UP: (0, -2),
         pg.K_DOWN: (0, +2),
         pg.K_LEFT: (-2, 0),
         pg.K_RIGHT: (+2, 0),
     }
+
 
     def __init__(self, num: int, xy: tuple[int, int]):
         """
